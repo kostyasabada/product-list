@@ -113,14 +113,14 @@ $mainTextColor: #313237;
   }
 }
 
-@media screen and (max-width: 576px) {
-  .catalog {
-    max-width: $productWidth + $productRowGap;
-  }
-}
-
 @media screen and (max-width: 992px) {
   .catalog {
     max-width: 2 * $productWidth + 2 * $productRowGap;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .catalog {
+    max-width: $productWidth + $productRowGap;
   }
 }
