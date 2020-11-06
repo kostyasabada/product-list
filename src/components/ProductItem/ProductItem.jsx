@@ -4,12 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProductImage } from '../../utils';
 import { getbucketList, getPinProduct } from '../../redux/rootReducer';
 import { addProductToBucket, removeProductfromBucket } from '../../redux/bucketListReducer';
-import { unpinProduct } from '../../redux/pinReducer';
+import { pinProduct, unpinProduct } from '../../redux/pinReducer';
 
-export const ProductItem = ({ product, addToPin }) => {
+export const ProductItem = ({ product }) => {
   const bucketList = useSelector(getbucketList);
   const pinnedProduct = useSelector(getPinProduct);
   const dispatch = useDispatch();
+
+  const addToPin = useCallback((productId) => {
+    dispatch(pinProduct(productId));
+  }, [dispatch]);
 
   const addToBucket = useCallback((productID) => {
     if (!bucketList.includes(productID)) {
@@ -88,5 +92,4 @@ export const ProductItem = ({ product, addToPin }) => {
 };
 ProductItem.propTypes = {
   product: PropTypes.objectOf(PropTypes.string).isRequired,
-  addToPin: PropTypes.func.isRequired,
 };

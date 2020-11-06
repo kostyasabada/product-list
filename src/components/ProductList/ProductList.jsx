@@ -1,19 +1,13 @@
-import React, { useCallback, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { getPinProduct, getProducts } from '../../redux/rootReducer';
 import { ProductItem } from '../ProductItem/ProductItem';
-import { pinProduct } from '../../redux/pinReducer';
 import './ProductList.scss';
 
 export const ProductList = () => {
   const [filter, setFilter] = useState('');
   const products = useSelector(getProducts);
   const pinnedProduct = useSelector(getPinProduct);
-  const dispatch = useDispatch();
-
-  const addToPin = useCallback((productId) => {
-    dispatch(pinProduct(productId));
-  }, [dispatch]);
 
   let filteredProducts = products
     .filter((product) => product.title.toLowerCase().includes(filter.toLowerCase())
@@ -50,7 +44,7 @@ export const ProductList = () => {
           <ProductItem
             key={product.id}
             product={product}
-            addToPin={addToPin}
+            // addToPin={addToPin}
           />
         ))}
 
